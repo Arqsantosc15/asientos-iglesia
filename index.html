@@ -8,512 +8,127 @@
 *{box-sizing:border-box}
 body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f4f6f8;color:#263238}
 header{background:#5b3a29;color:#fff;text-align:center;padding:22px 15px}
-header h1{margin:0 0 6px;font-size:28px}
-header p{margin:0;opacity:.92}
-.container{max-width:1100px;margin:24px auto;padding:0 14px}
-.panel{background:#fff;border-radius:18px;padding:20px;box-shadow:0 5px 22px rgba(0,0,0,.08)}
-.service-panel{background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:15px;margin-bottom:18px}
-.service-panel label{display:block;font-weight:bold;margin-bottom:7px;color:#5b3a29}
-.date-row{margin-bottom:14px}
-.service-date{width:100%;max-width:300px;padding:12px;border:1px solid #cbd5e1;border-radius:9px;font-size:15px;background:#fff}
-.service-controls{display:flex;gap:10px;flex-wrap:wrap}
-.service-select{flex:1;min-width:220px;padding:12px;border:1px solid #cbd5e1;border-radius:9px;font-size:15px;background:#fff}
-.service-button{border:0;border-radius:9px;padding:12px 16px;font-weight:bold;cursor:pointer;background:#5b3a29;color:#fff}
-.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:18px}
-.card{background:#f8fafc;border-radius:12px;text-align:center;padding:14px}
-.card strong{display:block;font-size:26px;margin-top:5px}
-.available strong{color:#16a34a}.occupied strong{color:#dc2626}.selected strong{color:#2563eb}
-.legend{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin:15px 0 20px}
-.legend-item{display:flex;align-items:center;gap:7px;font-size:14px}
-.dot{width:22px;height:22px;border-radius:6px}.green{background:#22c55e}.red{background:#ef4444}.blue{background:#2563eb}
-.church{background:#eee7df;border:4px solid #c9b9a9;border-radius:35px;padding:25px 18px 30px;overflow:auto}
-.front{max-width:300px;margin:0 auto 28px;background:#6b4f3a;color:white;text-align:center;padding:12px;border-radius:10px;font-weight:bold}
-.seating{display:grid;grid-template-columns:minmax(300px,1fr) 70px minmax(300px,1fr);gap:12px;align-items:start;min-width:720px}
-.block-title{text-align:center;font-weight:bold;margin-bottom:12px;color:#5b3a29}
-.side{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
-.aisle{min-height:100%;display:flex;justify-content:center;align-items:center;color:#777;font-size:12px;writing-mode:vertical-rl;letter-spacing:2px}
-.seat{border:0;min-height:50px;border-radius:9px;color:#fff;font-size:14px;font-weight:bold;cursor:pointer;box-shadow:inset 0 -4px rgba(0,0,0,.13),0 2px 5px rgba(0,0,0,.1);transition:.12s}
-.seat:hover{transform:translateY(-2px);filter:brightness(1.05)}
-.seat:active{transform:scale(.96)}
-.seat.available{background:#22c55e}.seat.occupied{background:#ef4444}.seat.selected{background:#2563eb}
-.form{margin-top:24px;border-top:1px solid #e5e7eb;padding-top:20px}
-.form h2{margin-top:0}
-input{width:100%;padding:13px;border:1px solid #cbd5e1;border-radius:9px;font-size:15px;max-width:500px}
-.buttons{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
-.action{border:0;border-radius:9px;padding:12px 18px;font-weight:bold;cursor:pointer}
-.save{background:#5b3a29;color:white}
-.occupy{background:#ef4444;color:white}
-.release{background:#fee2e2;color:#991b1b}
-.reset{background:#e5e7eb;color:#374151}
-.message{min-height:22px;margin-top:12px;font-weight:bold;font-size:14px}
-.reservations{margin-top:25px}
-.reservation{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:13px;border-bottom:1px solid #e5e7eb}
-.reservation small{color:#64748b}
-.delete{border:0;background:#fee2e2;color:#991b1b;padding:8px 11px;border-radius:7px;cursor:pointer}
-.empty{color:#64748b}
-@media(max-width:750px){
- header h1{font-size:22px}.summary{grid-template-columns:1fr}
- .church{padding:18px 8px}.seating{grid-template-columns:260px 45px 260px;min-width:585px}
- .side{gap:6px}.seat{min-height:46px;font-size:12px}.aisle{font-size:10px}
-}
+header h1{margin:0 0 6px;font-size:28px} header p{margin:0;opacity:.92}
+.container{max-width:1100px;margin:24px auto;padding:0 14px}.panel{background:#fff;border-radius:18px;padding:20px;box-shadow:0 5px 22px rgba(0,0,0,.08)}
+.connection{display:none;padding:11px 14px;border-radius:10px;margin-bottom:15px;font-weight:bold;font-size:14px}.connection.ok{display:block;background:#dcfce7;color:#166534}.connection.error{display:block;background:#fee2e2;color:#991b1b}
+.service-panel{background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:15px;margin-bottom:18px}.service-panel label{display:block;font-weight:bold;margin-bottom:7px;color:#5b3a29}.date-row{margin-bottom:14px}
+.service-date,.service-select{width:100%;padding:12px;border:1px solid #cbd5e1;border-radius:9px;font-size:15px;background:#fff}.service-date{max-width:300px}.service-controls{display:flex;gap:10px;flex-wrap:wrap}.service-select{flex:1;min-width:220px}.service-button{border:0;border-radius:9px;padding:12px 16px;font-weight:bold;cursor:pointer;background:#5b3a29;color:#fff}
+.summary{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px}.card{background:#f8fafc;border-radius:12px;text-align:center;padding:14px}.card strong{display:block;font-size:26px;margin-top:5px}.available strong{color:#16a34a}.reserved strong{color:#d97706}.occupied strong{color:#dc2626}.selected strong{color:#2563eb}
+.legend{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin:15px 0 20px}.legend-item{display:flex;align-items:center;gap:7px;font-size:14px}.dot{width:22px;height:22px;border-radius:6px}.green{background:#22c55e}.orange{background:#f59e0b}.red{background:#ef4444}.blue{background:#2563eb}
+.church{background:#eee7df;border:4px solid #c9b9a9;border-radius:35px;padding:25px 18px 30px;overflow:auto}.front{max-width:300px;margin:0 auto 28px;background:#6b4f3a;color:white;text-align:center;padding:12px;border-radius:10px;font-weight:bold}
+.seating{display:grid;grid-template-columns:minmax(300px,1fr) 70px minmax(300px,1fr);gap:12px;align-items:start;min-width:720px}.block-title{text-align:center;font-weight:bold;margin-bottom:12px;color:#5b3a29}.side{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}.aisle{min-height:100%;display:flex;justify-content:center;align-items:center;color:#777;font-size:12px;writing-mode:vertical-rl;letter-spacing:2px}
+.seat{border:0;min-height:50px;border-radius:9px;color:#fff;font-size:14px;font-weight:bold;cursor:pointer;box-shadow:inset 0 -4px rgba(0,0,0,.13),0 2px 5px rgba(0,0,0,.1);transition:.12s}.seat:hover{transform:translateY(-2px);filter:brightness(1.05)}.seat:active{transform:scale(.96)}.seat.available{background:#22c55e}.seat.reserved{background:#f59e0b}.seat.occupied{background:#ef4444}.seat.selected{background:#2563eb}
+.form{margin-top:24px;border-top:1px solid #e5e7eb;padding-top:20px}.form h2{margin-top:0}input{width:100%;padding:13px;border:1px solid #cbd5e1;border-radius:9px;font-size:15px;max-width:500px}.buttons{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}.action{border:0;border-radius:9px;padding:12px 18px;font-weight:bold;cursor:pointer}.reserve{background:#f59e0b;color:#fff}.save{background:#5b3a29;color:white}.occupy{background:#ef4444;color:white}.release{background:#fee2e2;color:#991b1b}.reset{background:#e5e7eb;color:#374151}.message{min-height:22px;margin-top:12px;font-weight:bold;font-size:14px}
+.reservations{margin-top:25px}.reservation{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:13px;border-bottom:1px solid #e5e7eb}.reservation small{color:#64748b}.delete{border:0;background:#fee2e2;color:#991b1b;padding:8px 11px;border-radius:7px;cursor:pointer}.empty{color:#64748b}
+@media(max-width:750px){header h1{font-size:22px}.summary{grid-template-columns:1fr 1fr}.church{padding:18px 8px}.seating{grid-template-columns:260px 45px 260px;min-width:585px}.side{gap:6px}.seat{min-height:46px;font-size:12px}.aisle{font-size:10px}}
 </style>
 </head>
 <body>
-
-<header>
-<h1>⛪ Registro de Asientos de la Iglesia</h1>
-<p>Seleccione la fecha y el servicio/reunión para administrar sus asientos</p>
-</header>
-
-<div class="container">
-<div class="panel">
-
+<header><h1>⛪ Registro de Asientos de la Iglesia</h1><p>Todos los teléfonos y computadoras ven el mismo estado de los asientos</p></header>
+<div class="container"><div class="panel">
+<div id="connection" class="connection"></div>
 <div class="service-panel">
-<div class="date-row">
-<label for="serviceDate">📅 Fecha del servicio/reunión</label>
-<input id="serviceDate" class="service-date" type="date" onchange="changeDate()">
-</div>
+<div class="date-row"><label for="serviceDate">📅 Fecha del servicio/reunión</label><input id="serviceDate" class="service-date" type="date"></div>
 <label for="serviceSelect">⛪ Servicio / Culto actual</label>
-<div class="service-controls">
-<select id="serviceSelect" class="service-select" onchange="changeService()"></select>
-<button class="service-button" onclick="addService()">➕ Nuevo servicio</button>
-<button class="service-button" onclick="renameService()">✏️ Renombrar</button>
+<div class="service-controls"><select id="serviceSelect" class="service-select"></select><button class="service-button" onclick="addService()">➕ Nuevo servicio</button><button class="service-button" onclick="renameService()">✏️ Renombrar</button></div>
 </div>
-</div>
+<div class="summary"><div class="card available">Disponibles<strong id="availableCount">126</strong></div><div class="card reserved">Reservados<strong id="reservedCount">0</strong></div><div class="card occupied">Ocupados<strong id="occupiedCount">0</strong></div><div class="card selected">Seleccionados<strong id="selectedCount">0</strong></div></div>
+<div class="legend"><div class="legend-item"><span class="dot green"></span> Disponible</div><div class="legend-item"><span class="dot orange"></span> Reservado</div><div class="legend-item"><span class="dot red"></span> Ocupado</div><div class="legend-item"><span class="dot blue"></span> Seleccionado</div></div>
+<div class="church"><div class="front">✝️ FRENTE / ALTAR</div><div class="seating"><div><div class="block-title">LADO IZQUIERDO — 11 FILAS</div><div class="side" id="leftSeats"></div></div><div class="aisle">PASILLO CENTRAL</div><div><div class="block-title">LADO DERECHO — 10 FILAS</div><div class="side" id="rightSeats"></div></div></div></div>
+<div class="form"><h2>👤 Registrar persona</h2><p>Seleccione uno o varios asientos. Puede reservarlos, ocuparlos o marcarlos ocupados sin nombre.</p><input id="personName" type="text" placeholder="Nombre de la persona">
+<div class="buttons"><button class="action reserve" onclick="reserveSelected()">Reservar con nombre</button><button class="action save" onclick="occupyWithName()">Ocupar con nombre</button><button class="action occupy" onclick="occupyWithoutName()">Ocupar sin nombre</button><button class="action release" onclick="releaseSelected()">Liberar seleccionados</button><button class="action reset" onclick="resetAll()">Restablecer fecha/servicio</button></div><div class="message" id="message"></div></div>
+<div class="reservations"><h2>📋 Registros de la fecha y servicio</h2><div id="reservationList"></div></div>
+</div></div>
 
-<div class="summary">
-<div class="card available">Disponibles<strong id="availableCount">126</strong></div>
-<div class="card occupied">Ocupados<strong id="occupiedCount">0</strong></div>
-<div class="card selected">Seleccionados<strong id="selectedCount">0</strong></div>
-</div>
-
-<div class="legend">
-<div class="legend-item"><span class="dot green"></span> Disponible</div>
-<div class="legend-item"><span class="dot red"></span> Ocupado</div>
-<div class="legend-item"><span class="dot blue"></span> Seleccionado</div>
-</div>
-
-<div class="church">
-<div class="front">✝️ FRENTE / ALTAR</div>
-
-<div class="seating">
-<div>
-<div class="block-title">LADO IZQUIERDO — 11 FILAS</div>
-<div class="side" id="leftSeats"></div>
-</div>
-
-<div class="aisle">PASILLO CENTRAL</div>
-
-<div>
-<div class="block-title">LADO DERECHO — 10 FILAS</div>
-<div class="side" id="rightSeats"></div>
-</div>
-</div>
-</div>
-
-<div class="form">
-<h2>👤 Registrar persona</h2>
-<p>Seleccione uno o varios asientos. Puede registrar un nombre o marcarlos como ocupados sin nombre.</p>
-<input id="personName" type="text" placeholder="Nombre de la persona">
-
-<div class="buttons">
-<button class="action save" onclick="saveReservation()">Guardar con nombre</button>
-<button class="action occupy" onclick="occupyWithoutName()">Marcar ocupado sin nombre</button>
-<button class="action release" onclick="releaseSelected()">Liberar seleccionados</button>
-<button class="action reset" onclick="resetAll()">Restablecer todo</button>
-</div>
-<div class="message" id="message"></div>
-</div>
-
-<div class="reservations">
-<h2>Personas registradas — fecha y servicio actual</h2>
-<div id="reservationList"></div>
-</div>
-
-</div>
-</div>
-
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
+/* PASO 1: pega aquí los datos públicos de tu proyecto Supabase. NO uses service_role. */
+const SUPABASE_URL = "https://lwywrldubtqtovkqcgzn.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_rc2R-wnMZrCryR6FxKpTWA_wLtl8TIn";
+
+const { createClient } = supabase;
+const db = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 const LEFT_ROWS=11, RIGHT_ROWS=10, SEATS_PER_ROW=6;
-const STORAGE_KEY="iglesia_asientos_fecha_servicio_v1";
 const DEFAULT_SERVICES=["Culto de la mañana","Culto de la tarde","Culto de la noche"];
+let currentDate=todayISO(), currentService="Culto de la mañana", currentSeats={};
+let selected=new Set(), realtimeChannel=null, loading=false;
 
-function todayISO(){
-  const d=new Date();
-  const offset=d.getTimezoneOffset();
-  return new Date(d.getTime()-offset*60000).toISOString().slice(0,10);
+function todayISO(){const d=new Date();const offset=d.getTimezoneOffset();return new Date(d.getTime()-offset*60000).toISOString().slice(0,10)}
+function allSeatIds(){const ids=[];for(let r=1;r<=LEFT_ROWS;r++)for(let n=1;n<=SEATS_PER_ROW;n++)ids.push(`I${r}-${n}`);for(let r=1;r<=RIGHT_ROWS;r++)for(let n=1;n<=SEATS_PER_ROW;n++)ids.push(`D${r}-${n}`);return ids}
+function setConnection(text,ok=false){const el=document.getElementById('connection');el.textContent=text;el.className='connection '+(ok?'ok':'error')}
+function clearMessage(){document.getElementById('message').textContent=''}
+function showMessage(text,error=false){const el=document.getElementById('message');el.textContent=text;el.style.color=error?'#dc2626':'#15803d';setTimeout(()=>{if(el.textContent===text)el.textContent=''},3500)}
+function formatDate(s){const p=s.split('-');return `${p[2]}/${p[1]}/${p[0]}`}
+function escapeHtml(text){return String(text??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
+function seatId(side,row,number){return (side==='I'?'I':'D')+row+'-'+number}
+function seatLabel(id){const side=id[0]==='I'?'Izq.':'Der.';const p=id.substring(1).split('-');return `${side} F${p[0]} A${p[1]}`}
+
+async function init(){
+  document.getElementById('serviceDate').value=currentDate;
+  document.getElementById('serviceDate').addEventListener('change',changeDate);
+  document.getElementById('serviceSelect').addEventListener('change',changeService);
+  if(SUPABASE_URL.startsWith('PEGA_')||SUPABASE_ANON_KEY.startsWith('PEGA_')){setConnection('⚠️ Falta conectar Supabase. Pega el Project URL y la Publishable/anon key en el código.');renderEmpty();return}
+  try{await loadServices();await loadSeats();subscribeRealtime();setConnection('🟢 Conectado a la base de datos en tiempo real.',true)}catch(e){console.error(e);setConnection('❌ No se pudo conectar con la base de datos: '+(e.message||e))}
 }
 
-let data=JSON.parse(localStorage.getItem(STORAGE_KEY))||{
-  currentDate:todayISO(),
-  currentService:"Culto de la mañana",
-  records:{}
-};
-
-function key(date,service){
-  return date+"__"+service;
+async function loadServices(){
+  const {data,error}=await db.from('church_seats').select('service_name').eq('service_date',currentDate);
+  if(error)throw error;
+  const names=new Set(DEFAULT_SERVICES);(data||[]).forEach(r=>names.add(r.service_name));
+  renderServices([...names]);
 }
+function renderServices(names){const sel=document.getElementById('serviceSelect');sel.innerHTML='';names.sort((a,b)=>a.localeCompare(b,'es')).forEach(n=>{const o=document.createElement('option');o.value=n;o.textContent=n;o.selected=n===currentService;sel.appendChild(o)});if(!names.includes(currentService)){currentService=names[0]||DEFAULT_SERVICES[0];sel.value=currentService}}
 
-function blankRecord(){
-  return {seats:{},reservations:[]};
+async function ensureSeats(){
+  const rows=allSeatIds().map(seat_id=>({service_date:currentDate,service_name:currentService,seat_id,status:'available',person:''}));
+  const {error}=await db.from('church_seats').upsert(rows,{onConflict:'service_date,service_name,seat_id',ignoreDuplicates:true});
+  if(error)throw error;
 }
-
-function seatId(side,row,number){
-  return (side==="I"?"I":"D")+row+"-"+number;
+async function loadSeats(){
+  selected.clear();currentSeats={};
+  await ensureSeats();
+  const {data,error}=await db.from('church_seats').select('seat_id,status,person,updated_at').eq('service_date',currentDate).eq('service_name',currentService);
+  if(error)throw error;
+  (data||[]).forEach(r=>currentSeats[r.seat_id]=r);
+  createSeats();renderReservations();
 }
+function createSeats(){createSide('leftSeats','I',LEFT_ROWS);createSide('rightSeats','D',RIGHT_ROWS);updateSummary()}
+function createSide(elementId,side,rows){const c=document.getElementById(elementId);c.innerHTML='';for(let r=1;r<=rows;r++){for(let n=1;n<=SEATS_PER_ROW;n++){const id=seatId(side,r,n),s=currentSeats[id]||{status:'available',person:''};const b=document.createElement('button');b.className='seat '+(selected.has(id)?'selected':s.status);b.textContent=r+'-'+n;b.title=seatLabel(id)+(s.person?' — '+s.person:'');b.onclick=()=>toggleSeat(id);c.appendChild(b)}}}
+function toggleSeat(id){const s=currentSeats[id]||{status:'available'};if(s.status!=='available'){showMessage(`El asiento ${seatLabel(id)} está ${s.status==='reserved'?'reservado':'ocupado'}.`,true);return}if(selected.has(id))selected.delete(id);else selected.add(id);createSeats()}
+function updateSummary(){let a=0,r=0,o=0;allSeatIds().forEach(id=>{const s=currentSeats[id]||{status:'available'};if(s.status==='available')a++;else if(s.status==='reserved')r++;else if(s.status==='occupied')o++});document.getElementById('availableCount').textContent=a;document.getElementById('reservedCount').textContent=r;document.getElementById('occupiedCount').textContent=o;document.getElementById('selectedCount').textContent=selected.size}
+function selectedIds(){return [...selected]}
 
-function initialize(){
-  if(!data.records || typeof data.records!=="object") data.records={};
-  if(!data.currentDate) data.currentDate=todayISO();
-  if(!data.currentService) data.currentService=DEFAULT_SERVICES[0];
-
-  DEFAULT_SERVICES.forEach(service=>{
-    ensureRecord(data.currentDate,service);
-  });
-
-  ensureRecord(data.currentDate,data.currentService);
-  saveData();
-  renderServiceOptions();
-  updateDateInput();
-}
-
-function ensureRecord(date,service){
-  const k=key(date,service);
-  if(!data.records[k]) data.records[k]=blankRecord();
-
-  const record=data.records[k];
-
-  for(let r=1;r<=LEFT_ROWS;r++){
-    for(let n=1;n<=SEATS_PER_ROW;n++){
-      const id=seatId("I",r,n);
-      if(!record.seats[id]) record.seats[id]={status:"available",person:""};
+async function setSelectedStatus(status,person){const ids=selectedIds();if(!ids.length){showMessage('Seleccione al menos un asiento.',true);return}if((status==='reserved'||status==='occupied')&&!person&&status!=='occupied'){showMessage('Escriba el nombre de la persona.',true);return}
+  loading=true;
+  try{
+    for(const id of ids){
+      const {data,error}=await db.from('church_seats').update({status,person:person||'',updated_at:new Date().toISOString()}).eq('service_date',currentDate).eq('service_name',currentService).eq('seat_id',id).eq('status','available').select('seat_id');
+      if(error)throw error;
+      if(!data||data.length===0)throw new Error(`El asiento ${seatLabel(id)} acaba de ser tomado por otra persona.`);
     }
-  }
-
-  for(let r=1;r<=RIGHT_ROWS;r++){
-    for(let n=1;n<=SEATS_PER_ROW;n++){
-      const id=seatId("D",r,n);
-      if(!record.seats[id]) record.seats[id]={status:"available",person:""};
-    }
-  }
+    selected.clear();document.getElementById('personName').value='';await loadSeats();showMessage(status==='reserved'?'Asientos reservados correctamente.':'Asientos ocupados correctamente.');
+  }catch(e){await loadSeats();showMessage(e.message||String(e),true)}finally{loading=false}
 }
+function reserveSelected(){const name=document.getElementById('personName').value.trim();if(!name){showMessage('Escriba el nombre de la persona.',true);return}setSelectedStatus('reserved',name)}
+function occupyWithName(){const name=document.getElementById('personName').value.trim();if(!name){showMessage('Escriba el nombre de la persona.',true);return}setSelectedStatus('occupied',name)}
+function occupyWithoutName(){setSelectedStatus('occupied','')}
 
-function current(){
-  ensureRecord(data.currentDate,data.currentService);
-  return data.records[key(data.currentDate,data.currentService)];
-}
+async function releaseSelected(){const ids=selectedIds();if(!ids.length){showMessage('Seleccione al menos un asiento.',true);return}try{const {error}=await db.from('church_seats').update({status:'available',person:'',updated_at:new Date().toISOString()}).eq('service_date',currentDate).eq('service_name',currentService).in('seat_id',ids);if(error)throw error;selected.clear();await loadSeats();showMessage('Asientos liberados.')}catch(e){showMessage(e.message||String(e),true)}}
 
-function saveData(){
-  localStorage.setItem(STORAGE_KEY,JSON.stringify(data));
-}
+async function deletePersonSeats(name,status){if(!confirm(`¿Liberar todos los asientos de ${name||'este registro'} en esta fecha y servicio?`))return;try{let q=db.from('church_seats').update({status:'available',person:'',updated_at:new Date().toISOString()}).eq('service_date',currentDate).eq('service_name',currentService).eq('person',name);if(status)q=q.eq('status',status);const {error}=await q;if(error)throw error;await loadSeats();showMessage('Registro liberado.')}catch(e){showMessage(e.message||String(e),true)}}
 
-function updateDateInput(){
-  document.getElementById("serviceDate").value=data.currentDate;
-}
+async function resetAll(){if(!confirm('¿Liberar todos los 126 asientos de esta fecha y servicio?'))return;try{const {error}=await db.from('church_seats').update({status:'available',person:'',updated_at:new Date().toISOString()}).eq('service_date',currentDate).eq('service_name',currentService);if(error)throw error;selected.clear();await loadSeats();showMessage('Todos los asientos fueron liberados.')}catch(e){showMessage(e.message||String(e),true)}}
 
-function changeDate(){
-  const date=document.getElementById("serviceDate").value;
-  if(!date)return;
+function renderReservations(){const list=document.getElementById('reservationList');const groups={};Object.entries(currentSeats).forEach(([id,s])=>{if(s.status==='available')return;const key=s.status+'|'+(s.person||'Ocupado sin nombre');if(!groups[key])groups[key]={status:s.status,name:s.person||'Ocupado sin nombre',seats:[]};groups[key].seats.push(id)});const arr=Object.values(groups);if(!arr.length){list.innerHTML='<p class="empty">No hay reservas ni ocupaciones para esta fecha y servicio.</p>';return}list.innerHTML=arr.map(g=>{const label=g.status==='reserved'?'Reservado':'Ocupado';return `<div class="reservation"><div><strong>${escapeHtml(g.name)}</strong><br><small>${label} · Asientos: ${g.seats.map(seatLabel).join(', ')}<br>Servicio: ${escapeHtml(currentService)} · Fecha: ${formatDate(currentDate)}</small></div><button class="delete" onclick="deletePersonSeats(${JSON.stringify(g.name)},${JSON.stringify(g.status)})">Liberar</button></div>`}).join('')}
 
-  data.currentDate=date;
-  ensureRecord(data.currentDate,data.currentService);
-  saveData();
-  createSeats();
-  showMessage("Fecha cambiada a "+formatDate(data.currentDate)+".");
-}
+async function changeDate(){currentDate=document.getElementById('serviceDate').value;if(!currentDate)return;try{await loadServices();await loadSeats();showMessage('Fecha cambiada a '+formatDate(currentDate)+'.')}catch(e){showMessage(e.message||String(e),true)}}
+async function changeService(){currentService=document.getElementById('serviceSelect').value;try{await loadSeats();showMessage('Servicio cambiado a '+currentService+'.')}catch(e){showMessage(e.message||String(e),true)}}
+async function addService(){const name=prompt('Nombre del nuevo servicio o reunión:');if(name===null)return;const clean=name.trim();if(!clean){showMessage('Escriba un nombre.',true);return}currentService=clean;try{await ensureSeats();await loadServices();document.getElementById('serviceSelect').value=currentService;await loadSeats();showMessage('Servicio creado para '+formatDate(currentDate)+'.')}catch(e){showMessage(e.message||String(e),true)}}
+async function renameService(){const oldName=currentService,newName=prompt('Nuevo nombre para este servicio:',oldName);if(newName===null)return;const clean=newName.trim();if(!clean||clean===oldName)return;try{const {error}=await db.from('church_seats').update({service_name:clean,updated_at:new Date().toISOString()}).eq('service_date',currentDate).eq('service_name',oldName);if(error)throw error;currentService=clean;await loadServices();document.getElementById('serviceSelect').value=currentService;await loadSeats();showMessage('Servicio renombrado.')}catch(e){showMessage(e.message||String(e),true)}}
 
-function renderServiceOptions(){
-  const select=document.getElementById("serviceSelect");
-  select.innerHTML="";
-
-  const names=new Set(DEFAULT_SERVICES);
-  Object.keys(data.records).forEach(k=>{
-    const separator=k.indexOf("__");
-    if(separator>=0) names.add(k.substring(separator+2));
-  });
-
-  [...names].forEach(name=>{
-    const option=document.createElement("option");
-    option.value=name;
-    option.textContent=name;
-    if(name===data.currentService) option.selected=true;
-    select.appendChild(option);
-  });
-}
-
-function changeService(){
-  data.currentService=document.getElementById("serviceSelect").value;
-  ensureRecord(data.currentDate,data.currentService);
-  saveData();
-  createSeats();
-  showMessage("Servicio cambiado a: "+data.currentService+" — "+formatDate(data.currentDate)+".");
-}
-
-function addService(){
-  const name=prompt("Nombre del nuevo servicio o reunión:");
-  if(name===null)return;
-
-  const clean=name.trim();
-  if(!clean){
-    showMessage("Escriba un nombre para el servicio.",true);
-    return;
-  }
-
-  const existing=Object.keys(data.records).some(k=>k.endsWith("__"+clean));
-  if(existing){
-    // Existing service on another date is still a valid service; ask only if same date.
-    if(data.records[key(data.currentDate,clean)]){
-      showMessage("Ese servicio ya existe para esta fecha.",true);
-      return;
-    }
-  }
-
-  data.currentService=clean;
-  ensureRecord(data.currentDate,clean);
-  saveData();
-  renderServiceOptions();
-  createSeats();
-  showMessage("Servicio creado para "+formatDate(data.currentDate)+".");
-}
-
-function renameService(){
-  const oldName=data.currentService;
-  const newName=prompt("Nuevo nombre para el servicio/reunión:",oldName);
-  if(newName===null)return;
-
-  const clean=newName.trim();
-  if(!clean){
-    showMessage("El nombre no puede estar vacío.",true);
-    return;
-  }
-
-  if(clean===oldName)return;
-
-  const oldKey=key(data.currentDate,oldName);
-  const newKey=key(data.currentDate,clean);
-
-  if(data.records[newKey]){
-    showMessage("Ya existe ese servicio para esta fecha.",true);
-    return;
-  }
-
-  data.records[newKey]=data.records[oldKey]||blankRecord();
-  delete data.records[oldKey];
-  data.currentService=clean;
-
-  saveData();
-  renderServiceOptions();
-  createSeats();
-  showMessage("Servicio renombrado correctamente.");
-}
-
-function createSeats(){
-  createSide("leftSeats","I",LEFT_ROWS);
-  createSide("rightSeats","D",RIGHT_ROWS);
-  updateSummary();
-}
-
-function createSide(elementId,side,rows){
-  const container=document.getElementById(elementId);
-  container.innerHTML="";
-
-  for(let r=1;r<=rows;r++){
-    for(let n=1;n<=SEATS_PER_ROW;n++){
-      const id=seatId(side,r,n);
-      const seat=document.createElement("button");
-      seat.className="seat "+current().seats[id].status;
-      seat.textContent=r+"-"+n;
-      seat.title="Fila "+r+", asiento "+n;
-      seat.onclick=()=>toggleSeat(id);
-      container.appendChild(seat);
-    }
-  }
-}
-
-function toggleSeat(id){
-  const seat=current().seats[id];
-
-  if(seat.status==="occupied"){
-    showMessage("Este asiento está ocupado. Para liberarlo, elimine el registro correspondiente.",true);
-    return;
-  }
-
-  seat.status=seat.status==="selected"?"available":"selected";
-  saveData();
-  createSeats();
-}
-
-function updateSummary(){
-  let available=0,occupied=0,selected=0;
-
-  Object.values(current().seats).forEach(s=>{
-    if(s.status==="available")available++;
-    else if(s.status==="occupied")occupied++;
-    else if(s.status==="selected")selected++;
-  });
-
-  document.getElementById("availableCount").textContent=available;
-  document.getElementById("occupiedCount").textContent=occupied;
-  document.getElementById("selectedCount").textContent=selected;
-
-  renderReservations();
-}
-
-function saveReservation(){
-  const name=document.getElementById("personName").value.trim();
-  const selected=Object.keys(current().seats).filter(id=>current().seats[id].status==="selected");
-
-  if(selected.length===0){
-    showMessage("Seleccione al menos un asiento.",true);
-    return;
-  }
-
-  if(!name){
-    showMessage("Escriba el nombre de la persona.",true);
-    return;
-  }
-
-  selected.forEach(id=>{
-    current().seats[id].status="occupied";
-    current().seats[id].person=name;
-  });
-
-  current().reservations.push({
-    id:Date.now(),
-    seats:selected,
-    name:name,
-    date:new Date().toLocaleString("es-DO")
-  });
-
-  document.getElementById("personName").value="";
-  saveData();
-  createSeats();
-  showMessage("Registro guardado: "+data.currentService+" — "+formatDate(data.currentDate)+".");
-}
-
-function occupyWithoutName(){
-  const selected=Object.keys(current().seats).filter(id=>current().seats[id].status==="selected");
-
-  if(selected.length===0){
-    showMessage("Seleccione al menos un asiento.",true);
-    return;
-  }
-
-  selected.forEach(id=>{
-    current().seats[id].status="occupied";
-    current().seats[id].person="";
-  });
-
-  current().reservations.push({
-    id:Date.now(),
-    seats:selected,
-    name:"Ocupado sin nombre",
-    date:new Date().toLocaleString("es-DO")
-  });
-
-  saveData();
-  createSeats();
-  showMessage("Asientos ocupados sin nombre.");
-}
-
-function releaseSelected(){
-  const selected=Object.keys(current().seats).filter(id=>current().seats[id].status==="selected");
-
-  if(selected.length===0){
-    showMessage("No hay asientos seleccionados.",true);
-    return;
-  }
-
-  selected.forEach(id=>{
-    current().seats[id].status="available";
-    current().seats[id].person="";
-  });
-
-  saveData();
-  createSeats();
-  showMessage("Los asientos seleccionados fueron liberados.");
-}
-
-function deleteReservation(id){
-  const reservation=current().reservations.find(r=>r.id===id);
-  if(!reservation)return;
-
-  reservation.seats.forEach(seatId=>{
-    if(current().seats[seatId]){
-      current().seats[seatId].status="available";
-      current().seats[seatId].person="";
-    }
-  });
-
-  current().reservations=current().reservations.filter(r=>r.id!==id);
-  saveData();
-  createSeats();
-  showMessage("Registro eliminado y asientos liberados.");
-}
-
-function resetAll(){
-  if(!confirm("¿Está seguro de borrar todos los registros y liberar todos los asientos de este servicio y fecha?"))return;
-
-  Object.keys(current().seats).forEach(id=>{
-    current().seats[id]={status:"available",person:""};
-  });
-
-  current().reservations=[];
-  saveData();
-  createSeats();
-  showMessage("Servicio restablecido.");
-}
-
-function renderReservations(){
-  const list=document.getElementById("reservationList");
-
-  if(current().reservations.length===0){
-    list.innerHTML='<p class="empty">No hay personas registradas para esta fecha y servicio.</p>';
-    return;
-  }
-
-  list.innerHTML=current().reservations.map(r=>{
-    const labels=r.seats.map(id=>formatSeat(id)).join(", ");
-    return `<div class="reservation">
-      <div>
-        <strong>${escapeHtml(r.name)}</strong><br>
-        <small>Asientos: ${labels}<br>Fecha del servicio: ${formatDate(data.currentDate)}<br>Registrado: ${escapeHtml(r.date)}</small>
-      </div>
-      <button class="delete" onclick="deleteReservation(${r.id})">Eliminar</button>
-    </div>`;
-  }).join("");
-}
-
-function formatSeat(id){
-  const side=id.startsWith("I")?"Izq.":"Der.";
-  const parts=id.substring(1).split("-");
-  return side+" F"+parts[0]+" A"+parts[1];
-}
-
-function formatDate(dateString){
-  if(!dateString)return "";
-  const parts=dateString.split("-");
-  if(parts.length!==3)return dateString;
-  return parts[2]+"/"+parts[1]+"/"+parts[0];
-}
-
-function showMessage(text,error=false){
-  const el=document.getElementById("message");
-  el.textContent=text;
-  el.style.color=error?"#dc2626":"#15803d";
-  setTimeout(()=>{
-    if(el.textContent===text)el.textContent="";
-  },3000);
-}
-
-function escapeHtml(text){
-  return String(text).replace(/[&<>"']/g,m=>({
-    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
-  }[m]));
-}
-
-initialize();
-createSeats();
+function subscribeRealtime(){if(realtimeChannel)db.removeChannel(realtimeChannel);realtimeChannel=db.channel('church-seats-live').on('postgres_changes',{event:'*',schema:'public',table:'church_seats'},payload=>{const row=payload.new||payload.old;if(row&&row.service_date===currentDate&&row.service_name===currentService){loadSeats().catch(console.error)}}).subscribe()}
+function renderEmpty(){currentSeats={};createSeats();renderReservations()}
+init();
 </script>
 </body>
 </html>
